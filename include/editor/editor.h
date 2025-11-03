@@ -11,7 +11,9 @@ public:
 
   void render();
 
+  int speed = 1;
+
 private:
-  bool my_tool_active;
+  bool editor_active = true;
   std::vector<float> *my_color;
 };
