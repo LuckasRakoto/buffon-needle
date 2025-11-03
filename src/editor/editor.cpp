@@ -1,1 +1,32 @@
 #include "editor/editor.h"
+#include "window/window.h"
+
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+#include <memory>
+
+Editor::Editor(std::shared_ptr<Window> window) {
+  ImGui::CreateContext();
+  ImGui::StyleColorsDark();
+
+  ImGui_ImplGlfw_InitForOpenGL(window.get()->getNativeWindow(), true);
+  ImGui_ImplOpenGL3_Init("#version 330");
+}
+
+Editor::~Editor() {
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
+}
+
+void Editor::render() {
+  ImGui_ImplOpenGL3_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+  ImGui::NewFrame();
+
+  ImGui::ShowDemoWindow();
+
+  ImGui::Render();
+  ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}

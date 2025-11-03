@@ -1,3 +1,4 @@
+#include <functional>
 #include <glad/gl.h>
 #include "GLFW/glfw3.h"
 #include <memory>
@@ -35,10 +36,16 @@ void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
   glViewport(0, 0, w, h);
 }
 
-void Window::render() {
+void Window::render(std::function<void()> f) {
   while (!glfwWindowShouldClose(window.get())) {
     glfwPollEvents();
-    glClear(GL_COLOR_BUFFER_BIT);
+
+    f();
+
     glfwSwapBuffers(window.get());
   }
+}
+
+GLFWwindow *Window::getNativeWindow() {
+  return window.get();
 }

@@ -1,9 +1,13 @@
+#include "editor/editor.h"
 #include "window/window.h"
 #include <memory>
 class Simulation {
 public:
-  void Start();
+  void start();
 
 private:
-  std::unique_ptr<Window> window;
+  void renderLoop();
+
+  std::unique_ptr<Editor> editor;
+  std::shared_ptr<Window> window;
 };

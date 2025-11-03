@@ -1,10 +1,12 @@
 #pragma once
+
+#include <functional>
+const int WIDTH = 1200;
+const int HEIGHT = 800;
+
 #include <memory>
 #include <string>
 #include <GLFW/glfw3.h>
-
-const int WIDTH = 1200;
-const int HEIGHT = 800;
 
 class Window {
 private:
@@ -22,5 +24,7 @@ public:
   Window(int w, int h, std::string title);
   ~Window();
 
-  void render();
+  GLFWwindow *getNativeWindow();
+
+  void render(std::function<void()> f);
 };

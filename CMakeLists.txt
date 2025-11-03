@@ -52,7 +52,7 @@ set(IMGUI_BUILD_OPENGL3_BINDING ON)
 
 FetchContent_MakeAvailable(imgui)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/include ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
 file(GLOB_RECURSE ALL_SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${ALL_SOURCES})
@@ -67,6 +67,8 @@ target_link_libraries(${PROJECT_NAME}
     glfw
     glm::glm
     imgui
+    imgui_impl_glfw
+    imgui_impl_opengl3
     "-framework Cocoa"
     "-framework OpenGL"
     "-framework IOKit"
