@@ -20,6 +20,7 @@ private:
 
 public:
   Window(int w, int h, std::string title);
+  ~Window();
 
   void render();
 };

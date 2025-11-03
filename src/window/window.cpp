@@ -12,8 +12,15 @@ void Window::loadGL() {
 
 Window::Window(int w, int h, std::string title)
     : width(w), height(h), title(title) {
+  loadGL();
   window = std::shared_ptr<GLFWwindow>(
-    glfwCreateWindow(width, height, title.c_str(), NULL, NULL));
+    glfwCreateWindow(width, height, title.c_str(), NULL, NULL),
+    [](GLFWwindow *w) {
+      if (w) {
+        glfwDestroyWindow(w);
+        glfwTerminate();
+      }
+    });
 
   glfwMakeContextCurrent(window.get());
   gladLoaderLoadGL();
@@ -21,9 +28,17 @@ Window::Window(int w, int h, std::string title)
   glfwSetFramebufferSizeCallback(window.get(), framebufferSizeCallback);
 }
 
+Window::~Window() {
+}
+
 void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
   glViewport(0, 0, w, h);
 }
 
 void Window::render() {
+  while (!glfwWindowShouldClose(window.get())) {
+    glfwPollEvents();
+    glClear(GL_COLOR_BUFFER_BIT);
+    glfwSwapBuffers(window.get());
+  }
 }
