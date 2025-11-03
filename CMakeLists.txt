@@ -55,9 +55,15 @@ FetchContent_MakeAvailable(imgui)
 include_directories(${CMAKE_SOURCE_DIR}/include ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
 file(GLOB_RECURSE ALL_SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
-add_executable(${PROJECT_NAME} ${ALL_SOURCES})
-
-
+add_executable(${PROJECT_NAME} ${ALL_SOURCES}
+    ${imgui_SOURCE_DIR}/imgui.cpp
+    ${imgui_SOURCE_DIR}/imgui_demo.cpp
+    ${imgui_SOURCE_DIR}/imgui_draw.cpp
+    ${imgui_SOURCE_DIR}/imgui_tables.cpp
+    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+)
 
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
@@ -66,9 +72,6 @@ target_link_libraries(${PROJECT_NAME}
     glad_gl_core_43
     glfw
     glm::glm
-    imgui
-    imgui_impl_glfw
-    imgui_impl_opengl3
     "-framework Cocoa"
     "-framework OpenGL"
     "-framework IOKit"
