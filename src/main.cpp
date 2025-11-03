@@ -1,6 +1,8 @@
 #include <print>
+#include "window/window.h"
 
 int main() {
-    std::println("Hello, World!");
-    return 0;
+  Window *w = new Window(WIDTH, HEIGHT, "Buffon's needle");
+  w->render();
+  return 0;
 }

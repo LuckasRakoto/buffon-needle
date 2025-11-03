@@ -1,5 +1,7 @@
-#include <window/window.h>
+#include <glad/gl.h>
 #include "GLFW/glfw3.h"
+#include <memory>
+#include <window/window.h>
 
 void Window::loadGL() {
   glfwInit();
@@ -10,5 +12,18 @@ void Window::loadGL() {
 
 Window::Window(int w, int h, std::string title)
     : width(w), height(h), title(title) {
-  glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+  window = std::shared_ptr<GLFWwindow>(
+    glfwCreateWindow(width, height, title.c_str(), NULL, NULL));
+
+  glfwMakeContextCurrent(window.get());
+  gladLoaderLoadGL();
+
+  glfwSetFramebufferSizeCallback(window.get(), framebufferSizeCallback);
+}
+
+void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
+  glViewport(0, 0, w, h);
+}
+
+void Window::render() {
 }
