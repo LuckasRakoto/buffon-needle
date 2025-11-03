@@ -39,6 +39,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(glm)
 
+# IMGUI
+FetchContent_Declare(
+    imgui
+    GIT_REPOSITORY  https://github.com/ocornut/imgui.git 
+    GIT_TAG         v1.92.4
+)
+
 include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE ALL_SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
