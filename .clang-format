@@ -1,0 +1,15 @@
+Language: Cpp
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
+UseTab: Never
+IndentCaseLabels: true
+
+SortIncludes: false
+
+ColumnLimit: 80
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: None
+PointerAlignment: Right
