@@ -42,14 +42,21 @@ FetchContent_MakeAvailable(glm)
 # IMGUI
 FetchContent_Declare(
     imgui
-    GIT_REPOSITORY  https://github.com/ocornut/imgui.git 
+    GIT_REPOSITORY https://github.com/ocornut/imgui.git
     GIT_TAG         v1.92.4
 )
+
+
+set(IMGUI_BUILD_GLFW_BINDING ON)
+set(IMGUI_BUILD_OPENGL3_BINDING ON)
+
+FetchContent_MakeAvailable(imgui)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB_RECURSE ALL_SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${ALL_SOURCES})
+
 
 
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
@@ -59,6 +66,7 @@ target_link_libraries(${PROJECT_NAME}
     glad_gl_core_43
     glfw
     glm::glm
+    imgui
     "-framework Cocoa"
     "-framework OpenGL"
     "-framework IOKit"

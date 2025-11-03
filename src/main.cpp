@@ -1,8 +1,7 @@
-#include "window/window.h"
+#include "simulation/simulation.h"
 
 int main() {
-  Window *w = new Window(WIDTH, HEIGHT, "Buffon's needle");
-  w->render();
-  delete w;
+  Simulation s;
+  s.Start();
   return 0;
 }
