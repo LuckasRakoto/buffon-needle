@@ -11,8 +11,7 @@ void Window::loadGL() {
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 };
 
-Window::Window(int w, int h, std::string title)
-    : width(w), height(h), title(title) {
+Window::Window(int width, int height, std::string title) {
   loadGL();
   window = std::shared_ptr<GLFWwindow>(
     glfwCreateWindow(width, height, title.c_str(), NULL, NULL),
@@ -29,9 +28,6 @@ Window::Window(int w, int h, std::string title)
   glfwSetFramebufferSizeCallback(window.get(), framebufferSizeCallback);
 }
 
-Window::~Window() {
-}
-
 void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
   glViewport(0, 0, w, h);
 }
@@ -39,6 +35,8 @@ void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
 void Window::render(std::function<void()> f) {
   while (!glfwWindowShouldClose(window.get())) {
     glfwPollEvents();
+
+    background();
 
     f();
 
@@ -48,4 +46,9 @@ void Window::render(std::function<void()> f) {
 
 GLFWwindow *Window::getNativeWindow() {
   return window.get();
+}
+
+void Window::background() {
+  glClearColor(224.0f / 255, 197.0f / 255, 164.0f / 255, 1.00f);
+  glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -10,19 +10,16 @@ const int HEIGHT = 800;
 
 class Window {
 private:
-  int width;
-  int height;
-  std::string title;
-
   std::shared_ptr<GLFWwindow> window;
 
   void loadGL();
 
   static void framebufferSizeCallback(GLFWwindow *_, int w, int h);
 
+  void background();
+
 public:
   Window(int w, int h, std::string title);
-  ~Window();
 
   GLFWwindow *getNativeWindow();
 
