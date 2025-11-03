@@ -2,6 +2,7 @@
 
 #include "window/window.h"
 #include <memory>
+#include <vector>
 
 class Editor {
 public:
@@ -9,4 +10,8 @@ public:
   ~Editor();
 
   void render();
+
+private:
+  bool my_tool_active;
+  std::vector<float> *my_color;
 };
