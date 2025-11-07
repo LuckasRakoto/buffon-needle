@@ -12,4 +12,6 @@ private:
   unsigned int compileVertexShader(std::string *vertShaderSource);
   unsigned int compileFragmentShader(std::string *fragShaderSource);
   void buildProgram(unsigned int vertShader, unsigned int fragShader);
+
+  void logShaderError(unsigned int shader);
 };

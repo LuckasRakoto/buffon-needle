@@ -30,3 +30,21 @@ Shader::Shader(std::string *vertexPath, std::string *fragmentPath) {
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
 };
+
+Shader::~Shader() {
+  glDeleteShader(this->ID);
+}
+
+unsigned int Shader::compileFragmentShader(std::string *fragShaderSource) {
+  unsigned int fragmentShader;
+  int success;
+  fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+  const char *fragmentShaderSource = fragShaderSource->c_str();
+  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+  glCompileShader(fragmentShader);
+  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    this->logShaderError(fragmentShader);
+  }
+  return fragmentShader;
+}
