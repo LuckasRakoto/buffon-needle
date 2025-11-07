@@ -9,6 +9,6 @@ struct Position {
 
 class Stick {
 public:
-  Stick(Position *start, Position *end);
+  Stick(Position start, Position end);
   std::vector<float> vertices;
 };
