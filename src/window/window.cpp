@@ -4,6 +4,9 @@
 #include <memory>
 #include <window/window.h>
 
+constinit int WIDTH = 1200;
+constinit int HEIGHT = 800;
+
 void Window::loadGL() {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <functional>
-const int WIDTH = 1200;
-const int HEIGHT = 800;
 
 #include <memory>
 #include <string>
