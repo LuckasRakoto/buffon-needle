@@ -1,5 +1,6 @@
 #include "shader/shader.h"
 #include "glad/gl.h"
+#include <OpenGL/gl.h>
 #include <fstream>
 #include <print>
 #include <sstream>
@@ -36,15 +37,29 @@ Shader::~Shader() {
 }
 
 unsigned int Shader::compileFragmentShader(std::string *fragShaderSource) {
-  unsigned int fragmentShader;
   int success;
-  fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+  unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
   const char *fragmentShaderSource = fragShaderSource->c_str();
   glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
   glCompileShader(fragmentShader);
   glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     this->logShaderError(fragmentShader);
+    // Actually handle the error here
   }
   return fragmentShader;
+}
+
+unsigned int Shader::compileVertexShader(std::string *vertShaderSource) {
+  int success;
+  unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  const char *vertexShaderSource = vertShaderSource->c_str();
+  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+  glCompileShader(vertexShader);
+  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    this->logShaderError(vertexShader);
+    // Actually handle the error here
+  }
+  return vertexShader;
 }
