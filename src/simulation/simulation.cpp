@@ -4,6 +4,9 @@
 #include <memory>
 #include <GLFW/glfw3.h>
 
+constinit int WIDTH = 1200;
+constinit int HEIGHT = 800;
+
 void Simulation::start() {
   window =
     std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
