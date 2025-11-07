@@ -1,5 +1,5 @@
 #include "shader/shader.h"
-#include "glad/gl.h"
+#include <glad/gl.h>
 #include <OpenGL/gl.h>
 #include <fstream>
 #include <print>

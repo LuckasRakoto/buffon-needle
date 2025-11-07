@@ -1,3 +1,14 @@
 #pragma once
+#include <vector>
 
-class Stick {};
+struct Position {
+  float x;
+  float y;
+  float z;
+};
+
+class Stick {
+public:
+  Stick(Position *start, Position *end);
+  std::vector<float> vertices;
+};
