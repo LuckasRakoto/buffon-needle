@@ -1,6 +1,7 @@
 #include "stick/stickfactory.h"
 #include <cmath>
 #include <cstdlib>
+#include <numbers>
 
 StickFactory::StickFactory(float l) : length(l) {
 }
@@ -8,7 +9,7 @@ StickFactory::StickFactory(float l) : length(l) {
 Stick *StickFactory::newStick() {
   float x = (rand() - 1.0f) / RAND_MAX;
   float y = (rand() - 1.0f) / RAND_MAX;
-  float theta = (static_cast<float>(rand()) / RAND_MAX) * 360.0f;
+  float theta = (static_cast<float>(rand()) / RAND_MAX) * 2 * std::numbers::pi;
   return new Stick(getStart(x, y, theta), getEnd(x, y, theta));
 }
 
