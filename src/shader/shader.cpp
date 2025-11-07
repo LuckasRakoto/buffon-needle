@@ -45,7 +45,7 @@ unsigned int Shader::compileFragmentShader(std::string *fragShaderSource) {
   glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     this->logShaderError(fragmentShader);
-    // Actually handle the error here
+    // TODO: Actually handle the error here
   }
   return fragmentShader;
 }
@@ -59,7 +59,24 @@ unsigned int Shader::compileVertexShader(std::string *vertShaderSource) {
   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     this->logShaderError(vertexShader);
-    // Actually handle the error here
+    // TODO: Actually handle the error here
   }
   return vertexShader;
+}
+
+void Shader::buildProgram(unsigned int vertexShader,
+                          unsigned int fragmentShader) {
+  int success;
+  char infolog[512];
+  unsigned int program = glCreateProgram();
+  glAttachShader(program, vertexShader);
+  glAttachShader(program, fragmentShader);
+  glLinkProgram(program);
+  glGetProgramiv(program, GL_LINK_STATUS, &success);
+  if (!success) {
+    glGetProgramInfoLog(program, 512, NULL, infolog);
+    std::printf("ERROR::SHADER:PROGRAM::LINKAGE_FAILED:\n%s\n", infolog);
+    // TODO: Actually handle the error here
+  }
+  ID = program;
 }
