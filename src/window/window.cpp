@@ -3,6 +3,7 @@
 #include "GLFW/glfw3.h"
 #include <memory>
 #include <window/window.h>
+#include <color/color.h>
 
 void Window::loadGL() {
   glfwInit();
@@ -42,6 +43,11 @@ void Window::render(std::function<void()> f) {
 
     glfwSwapBuffers(window.get());
   }
+  window.reset();
+}
+
+bool Window::isOpen() {
+  return window.get() && !glfwWindowShouldClose(window.get());
 }
 
 GLFWwindow *Window::getNativeWindow() {
@@ -49,6 +55,7 @@ GLFWwindow *Window::getNativeWindow() {
 }
 
 void Window::background() {
-  glClearColor(224.0f / 255, 197.0f / 255, 164.0f / 255, 1.00f);
+  glClearColor(BACKGROUND_COLOR[0], BACKGROUND_COLOR[1], BACKGROUND_COLOR[2],
+               1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -22,4 +22,6 @@ public:
   GLFWwindow *getNativeWindow();
 
   void render(std::function<void()> f);
+
+  bool isOpen();
 };
