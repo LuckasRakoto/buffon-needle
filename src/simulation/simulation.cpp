@@ -11,7 +11,7 @@
 constinit int WIDTH = 1200;
 constinit int HEIGHT = 800;
 
-Simulation::Simulation() : sticks({}), stick_factory(StickFactory(60)) {
+Simulation::Simulation() : sticks({}), stick_factory(StickFactory(0.5f)) {
   window =
       std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
   editor = std::unique_ptr<Editor>(new Editor(window));
