@@ -45,6 +45,7 @@ unsigned int Shader::compileFragmentShader(std::string *fragShaderSource) {
   glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     this->logShaderError(fragmentShader);
+    std::println("COULNT BUILD FRAGMENT SHADER");
     // TODO: Actually handle the error here
   }
   return fragmentShader;
@@ -59,6 +60,7 @@ unsigned int Shader::compileVertexShader(std::string *vertShaderSource) {
   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
   if (!success) {
     this->logShaderError(vertexShader);
+    std::println("COULNT BUILD VERTEX SHADER");
     // TODO: Actually handle the error here
   }
   return vertexShader;

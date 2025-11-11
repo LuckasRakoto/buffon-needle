@@ -12,6 +12,9 @@ constinit int WIDTH = 1200;
 constinit int HEIGHT = 800;
 
 Simulation::Simulation() : sticks({}), stick_factory(StickFactory(60)) {
+  window =
+      std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
+  editor = std::unique_ptr<Editor>(new Editor(window));
   unsigned int vbo, vao;
   glGenBuffers(1, &vbo);
   glGenVertexArrays(1, &vao);
@@ -23,9 +26,6 @@ Simulation::Simulation() : sticks({}), stick_factory(StickFactory(60)) {
 }
 
 void Simulation::start() {
-  window =
-      std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
-  editor = std::unique_ptr<Editor>(new Editor(window));
 
   target_frame_duration = std::chrono::duration<double>(1.0f / editor->speed);
 
@@ -67,7 +67,7 @@ void Simulation::render_sticks() {
   glEnableVertexAttribArray(0);
 
   glUseProgram(stick_shader_program->ID);
-  glDrawArrays(GL_LINES, 0, sticks.size());
+  glDrawArrays(GL_LINES, 0, sticks.size() * 2);
 
   glBindVertexArray(0);
 }
