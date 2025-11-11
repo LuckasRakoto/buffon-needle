@@ -1,9 +1,9 @@
 Language: Cpp
 BasedOnStyle: LLVM
 
-IndentWidth: 2
-ContinuationIndentWidth: 2
-TabWidth: 2
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
 UseTab: Never
 IndentCaseLabels: true
 
