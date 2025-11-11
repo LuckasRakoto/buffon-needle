@@ -58,7 +58,6 @@ GLFWwindow *Window::getNativeWindow() {
 }
 
 void Window::background() {
-  glClearColor(BACKGROUND_COLOR[0], BACKGROUND_COLOR[1], BACKGROUND_COLOR[2],
-               1.0);
+  glClearColor(BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 }
