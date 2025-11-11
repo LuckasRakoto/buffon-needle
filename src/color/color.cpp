@@ -19,6 +19,8 @@ constexpr std::array<uint8_t, 3> STICKS_RGB = {208, 171, 160};
 constexpr std::array<uint8_t, 3> BACKGROUND_RGB = {222, 196, 161};
 constexpr std::array<uint8_t, 3> SLITS_RGB = {237, 207, 142};
 
-constinit std::array<float, 3> STICKS_COLOR = buildColor(STICKS_RGB);
-constinit std::array<float, 3> BACKGROUND_COLOR = buildColor(BACKGROUND_RGB);
-constinit std::array<float, 3> BACKGROUND_SLITS_COLOR = buildColor(SLITS_RGB);
+constinit const std::array<float, 3> STICKS_COLOR = buildColor(STICKS_RGB);
+constinit const std::array<float, 3> BACKGROUND_COLOR =
+  buildColor(BACKGROUND_RGB);
+constinit const std::array<float, 3> BACKGROUND_SLITS_COLOR =
+  buildColor(SLITS_RGB);
