@@ -80,3 +80,7 @@ void Shader::buildProgram(unsigned int vertexShader,
   }
   ID = program;
 }
+
+void Shader::logShaderError(unsigned int _) {
+  // TODO : IMPLEMENT THIS
+}
