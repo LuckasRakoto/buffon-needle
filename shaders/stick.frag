@@ -7,5 +7,5 @@ out vec4 StickColor;
 void main()
 {
   gl_Position = vec4(stickPos, 1.0);
-  StickColor = sColor;
+  StickColor = vec4(sColor, 1.0);
 }

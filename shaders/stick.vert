@@ -4,5 +4,5 @@ in vec3 StickColor;
 
 void main()
 {
-  FragColor = vec4(StickColor, 1.0);
+  FragColor = StickColor;
 }
