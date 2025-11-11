@@ -1,6 +1,7 @@
 #include "editor/editor.h"
 #include "stick/stick.h"
 #include "window/window.h"
+#include <chrono>
 #include <memory>
 #include <vector>
 
@@ -17,4 +18,6 @@ private:
 
   std::unique_ptr<Editor> editor;
   std::shared_ptr<Window> window;
+
+  std::chrono::duration<double> targetFrameDuration;
 };
