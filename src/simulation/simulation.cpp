@@ -67,7 +67,7 @@ void Simulation::render_sticks() {
   glEnableVertexAttribArray(0);
 
   glUseProgram(stick_shader_program->ID);
-  glDrawArrays(GL_LINES, 0, vertices.size());
+  glDrawArrays(GL_LINES, 0, sticks.size());
 
   glBindVertexArray(0);
 }

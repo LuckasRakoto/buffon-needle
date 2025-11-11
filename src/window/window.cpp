@@ -1,7 +1,9 @@
+#include <exception>
 #include <functional>
 #include <glad/gl.h>
 #include "GLFW/glfw3.h"
 #include <memory>
+#include <stdexcept>
 #include <window/window.h>
 #include <color/color.h>
 
@@ -23,7 +25,11 @@ Window::Window(int width, int height, std::string title) {
         }
       });
 
-  glfwMakeContextCurrent(window.get());
+  auto window_ptr = window.get();
+  if (!window_ptr) {
+    throw std::runtime_error("Something happened at window creation");
+  }
+  glfwMakeContextCurrent(window_ptr);
   gladLoaderLoadGL();
 
   glfwSetFramebufferSizeCallback(window.get(), framebufferSizeCallback);
@@ -34,16 +40,13 @@ void Window::framebufferSizeCallback(GLFWwindow *_, int w, int h) {
 }
 
 void Window::render(std::function<void()> f) {
-  while (!glfwWindowShouldClose(window.get())) {
-    glfwPollEvents();
+  glfwPollEvents();
 
-    background();
+  background();
 
-    f();
+  f();
 
-    glfwSwapBuffers(window.get());
-  }
-  window.reset();
+  glfwSwapBuffers(window.get());
 }
 
 bool Window::isOpen() {

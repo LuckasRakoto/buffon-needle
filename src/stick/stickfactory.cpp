@@ -7,8 +7,8 @@ StickFactory::StickFactory(float l) : length(l) {
 }
 
 Stick StickFactory::new_stick() {
-  float x = (rand() - 1.0f) / RAND_MAX;
-  float y = (rand() - 1.0f) / RAND_MAX;
+  float x = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
+  float y = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
   float theta = (static_cast<float>(rand()) / RAND_MAX) * 2 * std::numbers::pi;
   return Stick(getStart(x, y, theta), getEnd(x, y, theta));
 }
