@@ -15,13 +15,13 @@ void Window::loadGL() {
 Window::Window(int width, int height, std::string title) {
   loadGL();
   window = std::shared_ptr<GLFWwindow>(
-    glfwCreateWindow(width, height, title.c_str(), NULL, NULL),
-    [](GLFWwindow *w) {
-      if (w) {
-        glfwDestroyWindow(w);
-        glfwTerminate();
-      }
-    });
+      glfwCreateWindow(width, height, title.c_str(), NULL, NULL),
+      [](GLFWwindow *w) {
+        if (w) {
+          glfwDestroyWindow(w);
+          glfwTerminate();
+        }
+      });
 
   glfwMakeContextCurrent(window.get());
   gladLoaderLoadGL();

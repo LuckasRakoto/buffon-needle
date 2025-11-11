@@ -11,7 +11,7 @@ constinit int HEIGHT = 800;
 
 void Simulation::start() {
   window =
-    std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
+      std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
   editor = std::unique_ptr<Editor>(new Editor(window));
 
   targetFrameDuration = std::chrono::duration<double>(1.0f / editor->speed);
