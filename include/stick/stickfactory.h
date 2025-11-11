@@ -3,7 +3,7 @@
 class StickFactory {
 public:
   StickFactory(float l);
-  Stick *newStick();
+  Stick new_stick();
 
 private:
   Position getStart(float x, float y, float theta);

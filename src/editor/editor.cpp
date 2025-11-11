@@ -1,12 +1,9 @@
 #include "editor/editor.h"
 #include "window/window.h"
-
-#include <cmath>
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <memory>
-#include <vector>
 
 Editor::Editor(std::shared_ptr<Window> window) {
   ImGui::CreateContext();
@@ -14,7 +11,6 @@ Editor::Editor(std::shared_ptr<Window> window) {
 
   ImGui_ImplGlfw_InitForOpenGL(window.get()->getNativeWindow(), true);
   ImGui_ImplOpenGL3_Init("#version 330");
-  my_color = new std::vector(4, 0.0f);
 }
 
 Editor::~Editor() {

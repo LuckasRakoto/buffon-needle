@@ -6,11 +6,11 @@
 StickFactory::StickFactory(float l) : length(l) {
 }
 
-Stick *StickFactory::newStick() {
+Stick StickFactory::new_stick() {
   float x = (rand() - 1.0f) / RAND_MAX;
   float y = (rand() - 1.0f) / RAND_MAX;
   float theta = (static_cast<float>(rand()) / RAND_MAX) * 2 * std::numbers::pi;
-  return new Stick(getStart(x, y, theta), getEnd(x, y, theta));
+  return Stick(getStart(x, y, theta), getEnd(x, y, theta));
 }
 
 Position StickFactory::getStart(float x, float y, float theta) {

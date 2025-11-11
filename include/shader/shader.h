@@ -5,7 +5,7 @@
 class Shader {
 public:
   unsigned int ID;
-  Shader(std::string *vertexPath, std::string *fragmentPath);
+  Shader(const std::string &vertexPath, const std::string &fragmentPath);
   ~Shader();
 
 private:

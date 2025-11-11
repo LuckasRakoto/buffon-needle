@@ -15,5 +15,4 @@ public:
 
 private:
   bool editor_active = true;
-  std::vector<float> *my_color;
 };

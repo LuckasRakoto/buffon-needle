@@ -6,13 +6,13 @@
 #include <sstream>
 #include <string>
 
-Shader::Shader(std::string *vertexPath, std::string *fragmentPath) {
+Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath) {
   std::string vertCode, fragCode;
   std::ifstream vertFile, fragFile;
 
   try {
-    vertFile.open(vertexPath->c_str());
-    fragFile.open(fragmentPath->c_str());
+    vertFile.open(vertexPath.c_str());
+    fragFile.open(fragmentPath.c_str());
     std::stringstream vertStream;
     std::stringstream fragStream;
     vertStream << vertFile.rdbuf();
@@ -33,7 +33,7 @@ Shader::Shader(std::string *vertexPath, std::string *fragmentPath) {
 };
 
 Shader::~Shader() {
-  glDeleteShader(this->ID);
+  glDeleteProgram(this->ID);
 }
 
 unsigned int Shader::compileFragmentShader(std::string *fragShaderSource) {
