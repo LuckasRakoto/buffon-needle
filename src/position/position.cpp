@@ -9,8 +9,7 @@ std::array<float, 3> Position::unpack() const {
   return {x, y, z};
 }
 
-Position Position::offset_xy(Position from, float angle, float step) {
-  auto [x, y, z] = from.unpack();
+Position Position::offset_xy(float angle, float step) {
   return Position({
       x + step * cos(angle), //
       y + step * sin(angle), //
