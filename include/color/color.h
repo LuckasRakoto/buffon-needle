@@ -1,4 +1,11 @@
-struct Color {
+#pragma once
+#include <array>
+
+class Color {
+public:
+  constexpr Color(std::array<uint8_t, 3> raw);
+  std::array<float, 3> unpack() const;
+
   float r;
   float g;
   float b;
