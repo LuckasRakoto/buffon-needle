@@ -5,8 +5,8 @@
 #include "color/color.h"
 
 Stick::Stick(std::pair<Position, Position> start,
-             std::pair<Position, Position> end)
-    : vertices({}), indices({}) {
+             std::pair<Position, Position> end, int counter)
+    : vertices({}) {
   auto add_vertex = [&](const Position &p) {
     vertices.append_range(p.unpack());
     vertices.append_range(STICKS_COLOR.unpack());
@@ -16,9 +16,14 @@ Stick::Stick(std::pair<Position, Position> start,
   add_vertex(end.first);
   add_vertex(end.second);
 
-  auto indices = std::vector<unsigned int>{
+  int base = (counter - 1) * 4;
+
+  indices = std::vector<int>{
       0, 1, 2, // 1st triangle
       2, 3, 1, // 2nd triangle
   };
+  std::transform(indices.begin(), indices.end(), indices.begin(),
+                 [base](int &index) { return index + base; });
+
   indices.append_range(indices);
 }
