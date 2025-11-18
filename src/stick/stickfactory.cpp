@@ -1,7 +1,13 @@
 #include "stick/stickfactory.h"
+#include "position/position.h"
 #include <cmath>
+#include <cstdint>
 #include <cstdlib>
 #include <numbers>
+#include <utility>
+
+const uint8_t HALF_STICK_WIDTH = 2;
+const float STICK_Z = 0.0f;
 
 StickFactory::StickFactory(float l) : length(l) {
 }
@@ -10,17 +16,24 @@ Stick StickFactory::new_stick() {
   float x = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
   float y = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
   float theta = (static_cast<float>(rand()) / RAND_MAX) * 2 * std::numbers::pi;
-  return Stick(getStart(x, y, theta), getEnd(x, y, theta));
+
+  return Stick(stick_start(x, y, theta), stick_end(x, y, theta));
 }
 
-Position StickFactory::getStart(float x, float y, float theta) {
-  return {.x = x + std::cos(theta) * length,
-          .y = y + std::sin(theta) * length,
-          .z = 1.0f};
+std::pair<Position, Position> StickFactory::stick_start(float x, float y,
+                                                        float theta) {
+  Position center = Position(
+      {x + std::cos(theta) * length, y + std::sin(theta) * length, STICK_Z});
+  return std::pair(
+      center.offset_xy(theta + std::numbers::pi / 2, HALF_STICK_WIDTH),
+      center.offset_xy(theta - std::numbers::pi / 2, HALF_STICK_WIDTH));
 }
 
-Position StickFactory::getEnd(float x, float y, float theta) {
-  return {.x = x - std::cos(theta) * length,
-          .y = y - std::sin(theta) * length,
-          .z = 1.0f};
+std::pair<Position, Position> StickFactory::stick_end(float x, float y,
+                                                      float theta) {
+  Position center = Position(
+      {x - std::cos(theta) * length, y - std::sin(theta) * length, STICK_Z});
+  return std::pair(
+      center.offset_xy(theta + std::numbers::pi / 2, HALF_STICK_WIDTH),
+      center.offset_xy(theta - std::numbers::pi / 2, HALF_STICK_WIDTH));
 }

@@ -1,4 +1,5 @@
 #include "stick/stick.h"
+#include <utility>
 
 class StickFactory {
 public:
@@ -6,7 +7,7 @@ public:
   Stick new_stick();
 
 private:
-  Position getStart(float x, float y, float theta);
-  Position getEnd(float x, float y, float theta);
+  std::pair<Position, Position> stick_start(float x, float y, float theta);
+  std::pair<Position, Position> stick_end(float x, float y, float theta);
   float length;
 };
