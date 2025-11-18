@@ -1,14 +1,11 @@
 #pragma once
+#include <utility>
 #include <vector>
-
-struct Position {
-  float x;
-  float y;
-  float z;
-};
+#include "position/position.h"
 
 class Stick {
 public:
-  Stick(Position start, Position end);
+  Stick(std::pair<Position, Position> start, std::pair<Position, Position> end);
   std::vector<float> vertices;
+  std::vector<int> indices;
 };
