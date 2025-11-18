@@ -6,18 +6,19 @@
 #include <numbers>
 #include <utility>
 
-const uint8_t HALF_STICK_WIDTH = 2;
+const float HALF_STICK_WIDTH = 0.005f;
 const float STICK_Z = 0.0f;
 
 StickFactory::StickFactory(float l) : length(l) {
 }
 
 Stick StickFactory::new_stick() {
+  counter++;
   float x = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
   float y = (rand() / (float)RAND_MAX) * 2.0f - 1.0f;
   float theta = (static_cast<float>(rand()) / RAND_MAX) * 2 * std::numbers::pi;
 
-  return Stick(stick_start(x, y, theta), stick_end(x, y, theta));
+  return Stick(stick_start(x, y, theta), stick_end(x, y, theta), counter);
 }
 
 std::pair<Position, Position> StickFactory::stick_start(float x, float y,

@@ -19,7 +19,7 @@ private:
 
   std::vector<Stick> sticks;
   StickFactory stick_factory;
-  unsigned int sticks_vao, sticks_vbo;
+  unsigned int sticks_vao, sticks_vbo, sticks_ebo;
   std::unique_ptr<Shader> stick_shader_program;
 
   std::unique_ptr<Editor> editor;
