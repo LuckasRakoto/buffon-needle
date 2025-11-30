@@ -1,4 +1,3 @@
-#include <exception>
 #include <functional>
 #include <glad/gl.h>
 #include "GLFW/glfw3.h"
@@ -19,6 +18,7 @@ void Window::loadGL() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwWindowHint(GLFW_SAMPLES, 4);
 };
 
 Window::Window(int width, int height, std::string title) {
@@ -31,6 +31,7 @@ Window::Window(int width, int height, std::string title) {
   }
   glfwMakeContextCurrent(window_ptr);
   gladLoaderLoadGL();
+  glEnable(GL_MULTISAMPLE);
 
   glfwSetFramebufferSizeCallback(window.get(), framebufferSizeCallback);
 }
