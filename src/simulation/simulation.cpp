@@ -12,7 +12,8 @@
 
 constinit const int WIDTH = 1200;
 constinit const int HEIGHT = 800;
-constexpr float STICK_LENGTH = 0.1f;
+constinit const float STICK_LENGTH = 0.1f;
+constinit const float STRIPS_WIDTH = 0.3f;
 
 Simulation::Simulation()
     : sticks({}), stick_factory(StickFactory(STICK_LENGTH)) {
