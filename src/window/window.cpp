@@ -7,6 +7,13 @@
 #include <window/window.h>
 #include <color/color.h>
 
+void Deletor::operator()(GLFWwindow *w) const {
+  if (w) {
+    glfwDestroyWindow(w);
+    glfwTerminate();
+  }
+}
+
 void Window::loadGL() {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -16,14 +23,7 @@ void Window::loadGL() {
 
 Window::Window(int width, int height, std::string title) {
   loadGL();
-  window = std::shared_ptr<GLFWwindow>(
-      glfwCreateWindow(width, height, title.c_str(), NULL, NULL),
-      [](GLFWwindow *w) {
-        if (w) {
-          glfwDestroyWindow(w);
-          glfwTerminate();
-        }
-      });
+  window.reset(glfwCreateWindow(width, height, title.c_str(), NULL, NULL));
 
   auto window_ptr = window.get();
   if (!window_ptr) {

@@ -6,9 +6,13 @@
 #include <string>
 #include <GLFW/glfw3.h>
 
+struct Deletor {
+  void operator()(GLFWwindow *w) const;
+};
+
 class Window {
 private:
-  std::shared_ptr<GLFWwindow> window;
+  std::unique_ptr<GLFWwindow, Deletor> window;
 
   void loadGL();
 
@@ -18,6 +22,7 @@ private:
 
 public:
   Window(int w, int h, std::string title);
+  Window(Window &w);
 
   GLFWwindow *getNativeWindow();
 

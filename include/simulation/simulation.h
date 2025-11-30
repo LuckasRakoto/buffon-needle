@@ -23,7 +23,7 @@ private:
   std::unique_ptr<Shader> stick_shader_program;
 
   std::unique_ptr<Editor> editor;
-  std::shared_ptr<Window> window;
+  std::unique_ptr<Window> window;
 
   std::chrono::duration<double> target_frame_duration;
 };

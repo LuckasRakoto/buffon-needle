@@ -16,9 +16,9 @@ constexpr float STICK_LENGTH = 0.1f;
 
 Simulation::Simulation()
     : sticks({}), stick_factory(StickFactory(STICK_LENGTH)) {
-  window =
-      std::shared_ptr<Window>(new Window(WIDTH, HEIGHT, "Buffon's needle"));
-  editor = std::unique_ptr<Editor>(new Editor(window));
+  window = std::make_unique<Window>(WIDTH, HEIGHT, "Buffon's needles");
+  editor = std::make_unique<Editor>();
+  editor->init(*window);
   unsigned int vbo, vao, ebo;
   glGenVertexArrays(1, &vao);
   glGenBuffers(1, &vbo);

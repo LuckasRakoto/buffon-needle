@@ -3,13 +3,14 @@
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
-#include <memory>
 
-Editor::Editor(std::shared_ptr<Window> window) {
+Editor::Editor() {
+}
+
+void Editor::init(Window &w) {
   ImGui::CreateContext();
   ImGui::StyleColorsDark();
-
-  ImGui_ImplGlfw_InitForOpenGL(window.get()->getNativeWindow(), true);
+  ImGui_ImplGlfw_InitForOpenGL(w.getNativeWindow(), true);
   ImGui_ImplOpenGL3_Init("#version 330");
 }
 
